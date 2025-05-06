@@ -1,1 +1,26 @@
+name: Update Postman Collection
 
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'path/to/openapi/file.yaml'  # Modify this with the actual path to your OpenAPI spec
+
+jobs:
+  update-postman:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Install Newman CLI
+        run: npm install -g newman
+
+      - name: Update Postman Collection via Postman API
+        env:
+          POSTMAN_API_KEY: ${{ secrets.POSTMAN_API_KEY }}
+        run: |
+          curl -X PUT https://api.getpostman.com/collections/{{collection_uid}} \
+          -H "X-Api-Key: $POSTMAN_API_KEY" \
+          -d @path/to/openapi/file.yaml
