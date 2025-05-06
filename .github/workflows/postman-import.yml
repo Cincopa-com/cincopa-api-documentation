@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - 'path/to/openapi/file.yaml'  # Modify this with the actual path to your OpenAPI spec
+      - '.github/index.yaml'
 
 jobs:
   update-postman:
