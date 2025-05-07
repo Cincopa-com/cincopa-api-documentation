@@ -21,6 +21,6 @@ jobs:
         env:
           POSTMAN_API_KEY: ${{ secrets.POSTMAN_API_KEY }}
         run: |
-          curl -X PUT https://api.getpostman.com/collections/{{collection_uid}} \
+          curl -X PUT https://api.getpostman.com/collections/zr10quo \
           -H "X-Api-Key: $POSTMAN_API_KEY" \
           -d @path/to/openapi/file.yaml
