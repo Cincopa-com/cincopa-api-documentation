@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - '.github/index.yaml'
+      - .github/index.yaml
 
 jobs:
   update-postman:
