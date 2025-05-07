@@ -6,7 +6,7 @@ info:
     galleries</h2><p>Cincopa REST API V2 is a simple set of REST based methods
     that allow you to access almost every aspect of your galleries and assets.
     Authentication is done with a simple api_token that can be created and
-    deleted per app, set the permission level according to the needed level and
+    , set the permission level according to the needed level and
     exposure level.</p><p><b>V2 API was designed to be used:</b></p><ul><li>in
     server-to-server scenario where the api_token and information is not exposed
     to the public, in such scenario the permissions level can allow write and
