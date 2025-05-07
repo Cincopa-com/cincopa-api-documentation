@@ -19,7 +19,7 @@ jobs:
 
       - name: Update Postman Collection via Postman API
         env:
-          POSTMAN_API_KEY: ${{ secrets.POSTMAN_API_KEY }}
+          POSTMAN_API_KEY: ${{ POSTMAN_API_KEY }}
         run: |
           curl -X PUT https://api.getpostman.com/collections/zr10quo \
           -H "X-Api-Key: $POSTMAN_API_KEY" \
