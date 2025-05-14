@@ -1,23 +1,23 @@
 name: Sync Postman Collection to Postman API
- 
+
 on:
   push:
     paths:
-      - 'collection.json'
+      - '.github/index.json'
     branches:
       - main
- 
+
 jobs:
-  sync-to-postman:
+  update-postman:
     runs-on: ubuntu-latest
- 
+
     steps:
-      - name: Checkout Repo
+      - name: Checkout code
         uses: actions/checkout@v3
- 
-      - name: Upload to Postman
+
+      - name: Sync collection to Postman
         run: |
           curl --location --request PUT "https://api.getpostman.com/collections/${{ secrets.POSTMAN_COLLECTION_UID }}" \
           --header "X-Api-Key: ${{ secrets.POSTMAN_API_KEY }}" \
           --header "Content-Type: application/json" \
-          --data "@collection.json"
+          --data "@.github/index.json"
