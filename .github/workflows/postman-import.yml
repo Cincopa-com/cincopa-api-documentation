@@ -1,27 +1,23 @@
-name: Update Postman Collection
-
+name: Sync Postman Collection to Postman API
+ 
 on:
   push:
+    paths:
+      - 'collection.json'
     branches:
       - main
-    paths:
-      - .github/index.yaml
-      - .github/index.json
-
+ 
 jobs:
-  update-postman:
+  sync-to-postman:
     runs-on: ubuntu-latest
+ 
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
-
-      - name: Install Newman CLI
-        run: npm install -g newman
-
-      - name: Update Postman Collection via Postman API
-        env:
-          POSTMAN_API_KEY: ${{ POSTMAN_API_KEY }}
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+ 
+      - name: Upload to Postman
         run: |
-          curl -X PUT https://api.getpostman.com/collections/zr10quo \
-          -H "X-Api-Key: $POSTMAN_API_KEY" \
-          -d @path/to/openapi/file.yaml
+          curl --location --request PUT "https://api.getpostman.com/collections/${{ secrets.POSTMAN_COLLECTION_UID }}" \
+          --header "X-Api-Key: ${{ secrets.POSTMAN_API_KEY }}" \
+          --header "Content-Type: application/json" \
+          --data "@collection.json"
