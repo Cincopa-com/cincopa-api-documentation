@@ -8,14 +8,14 @@ on:
       - main
 
 jobs:
-  update-postman:
+  sync-to-postman:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Sync collection to Postman
+      - name: Upload to Postman
         run: |
           curl --location --request PUT "https://api.getpostman.com/collections/${{ secrets.POSTMAN_COLLECTION_UID }}" \
           --header "X-Api-Key: ${{ secrets.POSTMAN_API_KEY }}" \
